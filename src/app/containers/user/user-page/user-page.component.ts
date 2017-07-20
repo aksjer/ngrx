@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../../models/user';
-import { getUserName } from '../../../reducers/user';
+import { getUsers } from '../../../reducers/user';
+import { UserLoadAction, UserLoadSuccessAction } from '../../../actions/user';
 
 @Component({
   selector: 'app-user-page',
@@ -19,7 +20,8 @@ export class UserPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.users$ = this._store.select(fromRoot.getUserName);
+    this.users$ = this._store.select(fromRoot.getUsers);
+    this._store.dispatch(new UserLoadAction());
   }
 
 }

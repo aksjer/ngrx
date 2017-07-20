@@ -2,26 +2,22 @@ import { User } from '../models/user';
 import * as user from '../actions/user';
 
 export interface State {
-  id: number;
-  name: string;
-  website: string;
+  users: User[]
 }
 
 const initialState: State = {
-  id: 0,
-  name: null,
-  website: null
+  users: []
 }
 
 export const reducer = (state = initialState, action: user.Actions): State => {
-  debugger
   switch (action.type) {
-    case user.LOAD:
+    case user.USER_LOAD_SUCCESS:
+      return {
+        users: action.payload
+      }
     default:
       return state;
   }
 }
 
-export const getUserName = (state: State) => {
-  return state ? state.name : state;
-}
+export const getUsers = (state: State) => state.users;

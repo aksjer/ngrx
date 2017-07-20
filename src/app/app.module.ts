@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { UserService } from './services/user/user.service';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './effects/user';
-import { reducer } from './reducers';
+import { reducers } from './reducers';
 import { UserPageComponent } from './containers/user/user-page/user-page.component';
+
+import * as user from './reducers/user';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { UserPageComponent } from './containers/user/user-page/user-page.compone
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects]),
   ],
   providers: [

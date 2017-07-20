@@ -1,23 +1,28 @@
 import { Action } from '@ngrx/store';
 import { User } from '../models/user';
 
-export const LOAD = '[User] Load';
-export const SEARCH = '[User] Search';
-export const SEARCH_COMPLETE = '[User] Search Complete';
+export const USER_LOAD             = '[User] Load';
+export const USER_LOAD_SUCCESS     = '[User] Load Success';
+export const USER_SEARCH           = '[User] Search';
+export const USER_SEARCH_SUCCESS   = '[User] Search Success';
 
-export class LoadAction implements Action {
-  readonly type = LOAD;
+export class UserLoadAction implements Action {
+  readonly type = USER_LOAD;
+}
+
+export class UserLoadSuccessAction implements Action {
+  readonly type = USER_LOAD_SUCCESS;
   constructor(public payload: User[]) { }
 }
 
-export class SearchAction implements Action {
-  readonly type = SEARCH;
+export class UserSearchAction implements Action {
+  readonly type = USER_SEARCH;
   constructor(public payload: string) { }
 }
 
-export class SearchCompleteAction implements Action {
-  readonly type = SEARCH_COMPLETE;
+export class UserSearchSuccessAction implements Action {
+  readonly type = USER_SEARCH_SUCCESS;
   constructor(public payload: User[]) { }
 }
 
-export type Actions = LoadAction | SearchAction | SearchCompleteAction;
+export type Actions = UserLoadSuccessAction | UserSearchSuccessAction;

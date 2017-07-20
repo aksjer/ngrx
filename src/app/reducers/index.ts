@@ -7,18 +7,9 @@ export interface State {
   user: fromUser.State
 }
 
-const reducers = {
+export const reducers = {
   user: fromUser.reducer
 }
 
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
-
-export function reducer(state: any, action: any) {
-  return productionReducer(state, action);
-}
-
-export const getUserState = (state: State) => {
-  debugger
-  return state.user
-};
-export const getUserName = createSelector(getUserState, fromUser.getUserName);
+export const getUserState = (state: State) => state.user;
+export const getUsers = createSelector(getUserState, fromUser.getUsers);
