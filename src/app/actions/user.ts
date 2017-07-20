@@ -25,4 +25,4 @@ export class UserSearchSuccessAction implements Action {
   constructor(public payload: User[]) { }
 }
 
-export type Actions = UserLoadSuccessAction | UserSearchSuccessAction;
+export type Actions = UserLoadAction | UserLoadSuccessAction | UserSearchSuccessAction;

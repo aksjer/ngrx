@@ -13,6 +13,7 @@ import { UserLoadAction, UserLoadSuccessAction } from '../../../actions/user';
 })
 export class UserPageComponent implements OnInit {
 
+  loading$: Observable<boolean>;
   users$: Observable<any>;
 
   constructor(
@@ -20,6 +21,7 @@ export class UserPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading$ = this._store.select(fromRoot.getLoading);
     this.users$ = this._store.select(fromRoot.getUsers);
     this._store.dispatch(new UserLoadAction());
   }

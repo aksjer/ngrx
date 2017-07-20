@@ -1,1 +1,4 @@
-{{users$ | async | json}}
+<md-spinner *ngIf="loading$ | async; else users"></md-spinner>
+<ng-template #users>
+  <div>{{users$ | async | json}}</div>
+</ng-template>

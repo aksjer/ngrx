@@ -7,7 +7,6 @@ import 'rxjs/add/operator/switchmap';
 import { User } from '../models/user';
 import { UserLoadSuccessAction } from '../actions/user';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
 @Injectable()
@@ -22,7 +21,7 @@ export class UserEffects {
     .ofType(user.USER_LOAD)
     .switchMap(() => Observable
       .of([{ id: 1, name: 'bob' }, { id: 2, name: 'jack' }])
-      .delay(2000)
+      .delay(1000)
       .map((users: User[]) => new user.UserLoadSuccessAction(users))
     );
 
