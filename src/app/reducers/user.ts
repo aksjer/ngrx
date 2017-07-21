@@ -14,7 +14,7 @@ const initialState: State = {
 };
 
 export const reducer = (state: State = initialState, action: user.Actions): State => {
-  console.log(state, action);
+  // console.log(state, action);
   switch (action.type) {
     case user.USER_LOAD:
       return Object.assign({}, state, { loading: true });

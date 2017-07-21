@@ -28,7 +28,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     this.searchTerm$ = this._store.select(fromRoot.getSearchTerm);
     this.searchSubscription = Observable
       .fromEvent(this.termInput.nativeElement, 'keyup')
-      .debounceTime(500)
+      .debounceTime(300)
       .map((el: KeyboardEvent) => (<HTMLInputElement>el.target).value)
       .subscribe((term: string) =>
         this._store.dispatch(new UserSearchAction(term))

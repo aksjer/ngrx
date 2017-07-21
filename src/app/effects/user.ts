@@ -30,9 +30,8 @@ export class UserEffects {
   userLoad$: Observable<Action> = this._actions$
     .ofType(user.USER_LOAD)
     .switchMap(() =>
-      Observable
-        .of(this.FAKE_USERS)
-        .delay(1000)
+      this
+        .get()
         .map((users: User[]) => new user.UserLoadSuccessAction(users))
     );
 
@@ -45,10 +44,15 @@ export class UserEffects {
 
   /* ---------------------------------------------------------------------------------- */
 
-  search(term): Observable<UserSearch> {
+  get(): Observable<User[]> {
     return Observable
       .of(this.FAKE_USERS)
-      .delay(1000)
+      .delay(200);
+  }
+
+  search(term): Observable<UserSearch> {
+    return this
+      .get()
       .map((users: User[]) => {
         return { term: term, users: users.filter(user => user.name.toLowerCase().includes(term.toLowerCase())) };
       });
