@@ -11,9 +11,19 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debouncetime';
 import { UserService } from '../services/user/user.service';
+import { UserSearch } from '../models/user-search';
 
 @Injectable()
 export class UserEffects {
+
+  FAKE_USERS: User[] = [
+    { id: 1, name: 'bob' },
+    { id: 2, name: 'jack' },
+    { id: 3, name: 'martin' },
+    { id: 4, name: 'pierre' },
+    { id: 5, name: 'aurélie' },
+    { id: 6, name: 'benoit' }
+  ];
 
   constructor(
     private _actions$: Actions,
@@ -40,19 +50,12 @@ export class UserEffects {
 
   /* ---------------------------------------------------------------------------------- */
 
-  search(term): Observable<User[]> {
+  search(term): Observable<UserSearch> {
     return Observable
       .of(this.FAKE_USERS)
-      .map((users: User[]) => users.filter(user => user.name.toLowerCase().includes(term.toLowerCase())));
+      .map((users: User[]) => {
+        return { term: term, users: users.filter(user => user.name.toLowerCase().includes(term.toLowerCase())) };
+      });
   }
-
-  FAKE_USERS: User[] = [
-    { id: 1, name: 'bob' },
-    { id: 2, name: 'jack' },
-    { id: 3, name: 'martin' },
-    { id: 4, name: 'pierre' },
-    { id: 5, name: 'aurélie' },
-    { id: 6, name: 'benoit' }
-  ]
 
 }

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { User } from '../models/user';
+import { UserSearch } from '../models/user-search';
 
 export const USER_LOAD             = '[User] Load';
 export const USER_LOAD_SUCCESS     = '[User] Load Success';
@@ -22,7 +23,7 @@ export class UserSearchAction implements Action {
 
 export class UserSearchSuccessAction implements Action {
   readonly type = USER_SEARCH_SUCCESS;
-  constructor(public payload: User[]) { }
+  constructor(public payload: UserSearch) { }
 }
 
 export type Actions = UserLoadAction | UserLoadSuccessAction | UserSearchAction | UserSearchSuccessAction;
