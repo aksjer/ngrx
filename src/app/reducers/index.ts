@@ -15,3 +15,4 @@ export const getUserState = (state: State) => state.user;
 export const getLoading = createSelector(getUserState, fromUser.getLoading);
 export const getUsers = createSelector(getUserState, fromUser.getUsers);
 export const getUsersName = createSelector(getUserState, fromUser.getUsersName);
+export const getSearchTerm = createSelector(getUserState, fromUser.getSearchTerm);

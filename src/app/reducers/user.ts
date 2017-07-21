@@ -14,25 +14,14 @@ const initialState: State = {
 };
 
 export const reducer = (state: State = initialState, action: user.Actions): State => {
+  console.log(state, action);
   switch (action.type) {
     case user.USER_LOAD:
-      return {
-        loading: true,
-        searchTerm: null,
-        users: []
-      };
+      return Object.assign({}, state, { loading: true });
     case user.USER_SEARCH:
-      return {
-        loading: true,
-        searchTerm: action.payload,
-        users: []
-      };
+      return Object.assign({}, state, { loading: true, searchTerm: action.payload });
     case user.USER_LOAD_SUCCESS:
-      return {
-        loading: false,
-        searchTerm: null,
-        users: action.payload
-      };
+      return Object.assign({}, state, { loading: false, users: action.payload });
     case user.USER_SEARCH_SUCCESS:
       return {
         loading: false,
@@ -47,3 +36,4 @@ export const reducer = (state: State = initialState, action: user.Actions): Stat
 export const getLoading = (state: State) => state.loading;
 export const getUsers = (state: State) => state.users;
 export const getUsersName = (state: State) => state.users.map(user => user.name);
+export const getSearchTerm = (state: State) => state.searchTerm;

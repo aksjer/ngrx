@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../../models/user';
-import { getUsers } from '../../../reducers/user';
-import { UserLoadAction, UserLoadSuccessAction } from '../../../actions/user';
+import { UserLoadAction, UserLoadSuccessAction, UserSearchAction } from '../../../actions/user';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user-page',
@@ -23,7 +23,13 @@ export class UserPageComponent implements OnInit {
   ngOnInit() {
     this.loading$ = this._store.select(fromRoot.getLoading);
     this.users$ = this._store.select(fromRoot.getUsersName);
-    this._store.dispatch(new UserLoadAction());
+    this._store
+      .select(fromRoot.getSearchTerm)
+      .subscribe(term =>
+        !term ? this._store.dispatch(new UserLoadAction())
+          : this._store.dispatch(new UserSearchAction(term))
+      )
+      .unsubscribe();
   }
 
 }

@@ -5,12 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import * as user from '../actions/user';
 import 'rxjs/add/operator/switchmap';
 import { User } from '../models/user';
-import { UserLoadSuccessAction, UserSearchSuccessAction } from '../actions/user';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debouncetime';
-import { UserService } from '../services/user/user.service';
 import { UserSearch } from '../models/user-search';
 
 @Injectable()
@@ -27,7 +25,6 @@ export class UserEffects {
 
   constructor(
     private _actions$: Actions,
-    private _userService: UserService
   ) { }
 
   @Effect()
@@ -53,6 +50,7 @@ export class UserEffects {
   search(term): Observable<UserSearch> {
     return Observable
       .of(this.FAKE_USERS)
+      .delay(1000)
       .map((users: User[]) => {
         return { term: term, users: users.filter(user => user.name.toLowerCase().includes(term.toLowerCase())) };
       });

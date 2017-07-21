@@ -8,7 +8,9 @@ import {
   MdListModule,
   MdIconModule,
   MdButtonModule,
-  MdInputModule
+  MdInputModule,
+  MdTabsModule,
+  MdMenuModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -20,13 +22,17 @@ import { UserPageComponent } from './containers/user/user-page/user-page.compone
 
 import * as user from './reducers/user';
 import { UserSearchComponent } from './containers/user/user-search/user-search.component';
+import { HomePageComponent } from './containers/home/home-page/home-page.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserPageComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,10 @@ import { UserSearchComponent } from './containers/user/user-search/user-search.c
     MdListModule,
     MdIconModule,
     MdButtonModule,
-    MdInputModule
+    MdInputModule,
+    MdTabsModule,
+    MdMenuModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     UserService
