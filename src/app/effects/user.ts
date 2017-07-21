@@ -8,7 +8,6 @@ import { User } from '../models/user';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/debouncetime';
 import { UserSearch } from '../models/user-search';
 
 @Injectable()
@@ -40,7 +39,6 @@ export class UserEffects {
   @Effect()
   userSearch$: Observable<Action> = this._actions$
     .ofType(user.USER_SEARCH)
-    .debounceTime(300)
     .map(toPayload)
     .switchMap(term => this.search(term))
     .map(users => new user.UserSearchSuccessAction(users));
