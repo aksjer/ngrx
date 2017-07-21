@@ -1,4 +1,11 @@
+<app-user-search></app-user-search>
+
 <md-spinner *ngIf="loading$ | async; else users"></md-spinner>
 <ng-template #users>
-  <div>{{users$ | async | json}}</div>
+  <md-nav-list>
+    <md-list-item *ngFor="let item of users$ | async">
+      {{item}}
+      <!-- {{item.username}} - {{item.email}} -->
+    </md-list-item>
+  </md-nav-list>
 </ng-template>

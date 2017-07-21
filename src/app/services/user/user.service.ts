@@ -12,14 +12,10 @@ export class UserService {
     private _http: Http
   ) { }
 
-  get(): Observable<User[]> {
-    debugger
-    return this._http
-      .get(environment.apiUrl)
-      .map((r: Response) => {
-        debugger
-        return r.json()
-      });
-  }
+  // get(): Observable<User[]> {
+  //   return this._http
+  //     .get(environment.apiUrl)
+  //     .map((r: Response) => r.json());
+  // }
 
 }

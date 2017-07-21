@@ -3,24 +3,36 @@ import * as user from '../actions/user';
 
 export interface State {
   loading: boolean,
+  searchTerm: string,
   users: User[]
 }
 
 const initialState: State = {
   loading: true,
+  searchTerm: null,
   users: []
 }
 
-export const reducer = (state = initialState, action: user.Actions): State => {
+export const reducer = (state: State = initialState, action: user.Actions): State => {
+  console.log(state);
   switch (action.type) {
     case user.USER_LOAD:
       return {
         loading: true,
+        searchTerm: null,
+        users: []
+      }
+    case user.USER_SEARCH:
+      return {
+        loading: true,
+        searchTerm: action.payload,
         users: []
       }
     case user.USER_LOAD_SUCCESS:
+    case user.USER_SEARCH_SUCCESS:
       return {
         loading: false,
+        searchTerm: null,
         users: action.payload
       }
     default:
@@ -30,4 +42,4 @@ export const reducer = (state = initialState, action: user.Actions): State => {
 
 export const getLoading = (state: State) => state.loading;
 export const getUsers = (state: State) => state.users;
-
+export const getUsersName = (state: State) => state.users.map(user => user.name);

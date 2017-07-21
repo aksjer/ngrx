@@ -3,7 +3,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { HttpModule } from '@angular/http';
-import { MdProgressSpinnerModule } from '@angular/material';
+import {
+  MdProgressSpinnerModule,
+  MdListModule,
+  MdIconModule,
+  MdButtonModule,
+  MdInputModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user/user.service';
@@ -13,12 +19,14 @@ import { reducers } from './reducers';
 import { UserPageComponent } from './containers/user/user-page/user-page.component';
 
 import * as user from './reducers/user';
+import { UserSearchComponent } from './containers/user/user-search/user-search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserPageComponent
+    UserPageComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,11 @@ import * as user from './reducers/user';
     HttpModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects]),
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdListModule,
+    MdIconModule,
+    MdButtonModule,
+    MdInputModule
   ],
   providers: [
     UserService

@@ -22,7 +22,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit() {
     this.loading$ = this._store.select(fromRoot.getLoading);
-    this.users$ = this._store.select(fromRoot.getUsers);
+    this.users$ = this._store.select(fromRoot.getUsersName);
     this._store.dispatch(new UserLoadAction());
   }
 
